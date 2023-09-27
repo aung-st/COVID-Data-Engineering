@@ -14,7 +14,7 @@ def generate_hash():
 
 def dump_json():
 
-  #standardise file names 
+  # standardise file names 
   name = "data"  
   current_datetime = datetime.datetime.now().strftime("%y%m%d%H%M")
   
