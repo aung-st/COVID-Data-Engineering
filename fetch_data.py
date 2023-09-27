@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import datetime 
 from json import dump
 import os
 
@@ -20,8 +21,14 @@ def get_data():
   return data['response']
 
 def dump_json():
+
+  #standardise file names 
+  name = "data"  
+  current_datetime = datetime.datetime.now().strftime("%y%m%d%H%M")
+  filename = f"json_dump/{name}_{current_datetime}.json"
+
   # dump the data to the file, ensuring non-ASCII characters are preserved
-  with open('json_dump/data.txt', 'w') as f:
+  with open(filename, 'w') as f:
     dump(get_data(), f, ensure_ascii=False)
   f.close()
 
