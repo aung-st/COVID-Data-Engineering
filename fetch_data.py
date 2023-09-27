@@ -20,6 +20,7 @@ def get_data():
   return data['response']
 
 def dump_json():
+  # dump the data to the file, ensuring non-ASCII characters are preserved
   with open('json_dump/data.txt', 'w') as f:
     dump(get_data(), f, ensure_ascii=False)
   f.close()
