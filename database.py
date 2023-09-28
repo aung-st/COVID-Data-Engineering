@@ -12,7 +12,7 @@ def create_main_table():
         connection = connect()
         with connection:
             connection.execute("""
-                               CREATE TABLE IF NOT EXISTS covid_data(
+                                CREATE TABLE IF NOT EXISTS covid_data(
                                 id TEXT PRIMARY KEY,
                                 continent TEXT,
                                 population INTEGER,
