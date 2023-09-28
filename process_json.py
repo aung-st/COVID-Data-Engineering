@@ -14,35 +14,51 @@ def create_key(
     # generate a 3-character hash key
     return generate_hash(4)[:3]+'-'+country
 
-def prepare_json(data):
+def extract_row(data):
 
-    for i in range(1):
+    # extract all keys from 1 dictionary entry
+    continent = data['continent']
+    country = data['country']
+    population = data['population']
+    new_cases = data['cases']['new']
+    active_cases = data['cases']['active']
+    critical_cases = data['cases']['critical']
+    recovered = data['cases']['recovered']
+    recovered_1m_pop = data['cases']['1M_pop']
+    recovered_total = data['cases']['total']
+    new_deaths = data['deaths']['new']
+    deaths_1m_pop = data['deaths']['1M_pop']
+    deaths_total = data['deaths']['total']
+    tests_1m_pop = data['tests']['1M_pop']
+    tests_total = data['tests']['total']
+    date_time = data['time']
+    id = create_key(country)
 
-        continent = data['response'][i]['continent']
-        country = data['response'][i]['country']
-        population = data['response'][i]['population']
-        new_cases = data['response'][i]['cases']['new']
-        active_cases = data['response'][i]['cases']['active']
-        critical_cases = data['response'][i]['cases']['critical']
-        recovered = data['response'][i]['cases']['recovered']
-        recovered_1m_pop = data['response'][i]['cases']['1M_pop']
-        recovered_total = data['response'][i]['cases']['total']
-        new_deaths = data['response'][i]['deaths']['new']
-        deaths_1m_pop = data['response'][i]['deaths']['1M_pop']
-        deaths_total = data['response'][i]['deaths']['total']
-        tests_1m_pop = data['response'][i]['tests']['1M_pop']
-        tests_total = data['response'][i]['tests']['total']
-        day = data['response'][i]['day']
-        time = data['response'][i]['time']
-
-        id = create_key(country)
-        print(id)
+    # return extracted keys
+    return [
+        id,
+        continent,
+        population,
+        new_cases,
+        new_deaths,
+        active_cases,
+        critical_cases,
+        recovered,
+        recovered_1m_pop,
+        recovered_total,
+        deaths_1m_pop,
+        deaths_total,
+        tests_1m_pop,
+        tests_total,
+        date_time
+    ]
 
 
 
 
 if __name__ == "__main__":
-    prepare_json(get_data())
+    print(extract_row(get_data()))
+
     
 
     
