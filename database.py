@@ -6,10 +6,6 @@ def connect():
         connection = sqlite3.connect("data.db")
         return connection
 
-def create_key():
-       # generate a 3-character hash key
-       return generate_hash(4)[:3]
-
 def create_main_table(): 
         # create the "covid_data" table in the database
         connection = connect()
@@ -50,10 +46,26 @@ def add(
     tests_total,
     date_time
 ):  
-    # insert data into the "covid_data" table
-    connection = connect()
-    with connection:
-        connection.execute("""INSERT INTO covid_data(
+    # insertion data
+    data = (
+            id,
+            continent,
+            population,
+            new_cases,
+            new_deaths,
+            active_cases,
+            critical_cases,
+            recovered,
+            recovered_1m_pop,
+            recovered_total,
+            deaths_1m_pop,
+            deaths_total,
+            tests_1m_pop,
+            tests_total,
+            date_time
+            )
+    # query
+    sqlite_insert = """INSERT INTO covid_data(
                             id,
                             continent,
                             population,
@@ -69,20 +81,15 @@ def add(
                             tests_1m_pop,
                             tests_total,
                             date_time)
-                           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                           );""",(
-                                id,
-                                continent,
-                                population,
-                                new_cases,
-                                new_deaths,
-                                active_cases,
-                                critical_cases,
-                                recovered,
-                                recovered_1m_pop,
-                                recovered_total,
-                                deaths_1m_pop,
-                                deaths_total,
-                                tests_1m_pop,
-                                tests_total,
-                                date_time))
+                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                           ;"""
+    # insert data into the "covid_data" table
+    connection = connect()
+    with connection:
+        connection.execute(
+              sqlite_insert,
+              data
+              )
+    connection.close()
+
+create_main_table()
