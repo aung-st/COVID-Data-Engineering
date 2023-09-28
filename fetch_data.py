@@ -16,7 +16,7 @@ def get_data():
   data = response.json()
 
   # return response data
-  return data['response']
+  return data
 
 def get_dataframe():
 
