@@ -1,16 +1,8 @@
 from fetch_data import get_data
 from json import dump
 import datetime 
-import hashlib
 import os
-
-def generate_hash():
-
-    # generate a hash object for a randomly generated string
-    hash_object = hashlib.sha1()
-    hash_object.update(str(os.urandom(3)).encode())
-    hash_id = hash_object.hexdigest()
-    return hash_id
+from generate_hash import generate_hash
 
 def dump_json():
 
