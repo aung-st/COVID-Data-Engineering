@@ -1,6 +1,6 @@
 from fetch_data import get_data
 from generate_hash import generate_hash
-
+from database import add
 
 def load_json():
 
@@ -11,7 +11,7 @@ def create_key(
     country,
 ):
        
-    # generate a 3-character hash key
+    # generate a 3-character hash key + country name seperated by a '-' character
     return generate_hash(4)[:3]+'-'+country
 
 def extract_row(data):
@@ -53,11 +53,29 @@ def extract_row(data):
         date_time
     ]
 
+def process_json(
+  raw_json
+):
+  for dict in raw_json['response']:
+    data = extract_row(dict)
+    add(
+        data[0],
+        data[1],
+        data[2],
+        data[3],
+        data[4],
+        data[5],
+        data[6],
+        data[7],
+        data[8],
+        data[9],
+        data[10],
+        data[11],
+        data[12],
+        data[13],
+        data[14]
+    )
 
-
-
-if __name__ == "__main__":
-    print(extract_row(get_data()))
 
     
 
