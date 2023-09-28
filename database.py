@@ -1,11 +1,13 @@
 import sqlite3
 
 def connect():
+        
         # establish a connection to the SQLite database "data.db"
         connection = sqlite3.connect("data.db")
         return connection
 
 def create_main_table(): 
+        
         # create the "covid_data" table in the database
         connection = connect()
         with connection:
@@ -27,6 +29,7 @@ def create_main_table():
                                 tests_total INTEGER,
                                 date_time TEXT
                                );""")
+        connection.close()
  
 def add(
     id,
@@ -45,6 +48,7 @@ def add(
     tests_total,
     date_time
 ):  
+    
     # insertion data
     data = (
             id,
@@ -63,6 +67,7 @@ def add(
             tests_total,
             date_time
             )
+    
     # query
     sqlite_insert = """INSERT INTO covid_data(
                             id,
@@ -82,6 +87,7 @@ def add(
                             date_time)
                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                            ;"""
+    
     # insert data into the "covid_data" table
     connection = connect()
     with connection:
