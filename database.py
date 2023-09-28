@@ -15,6 +15,7 @@ def create_main_table():
                                 CREATE TABLE IF NOT EXISTS covid_data(
                                 id TEXT PRIMARY KEY,
                                 continent TEXT,
+                                country TEXT,
                                 population INTEGER,
                                 new_cases INTEGER,
                                 new_deaths INTEGER,
@@ -34,6 +35,7 @@ def create_main_table():
 def add(
     id,
     continent,
+    country,
     population,
     new_cases,
     new_deaths,
@@ -53,6 +55,7 @@ def add(
     data = (
             id,
             continent,
+            country,
             population,
             new_cases,
             new_deaths,
@@ -97,4 +100,3 @@ def add(
               )
     connection.close()
 
-create_main_table()
