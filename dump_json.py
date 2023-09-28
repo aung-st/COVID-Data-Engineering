@@ -11,7 +11,7 @@ def dump_json():
   current_datetime = datetime.datetime.now().strftime("%y%m%d%H%M")
   
   
-  hash_id = generate_hash()[:3]
+  hash_id = generate_hash(3)[:3]
   
   # construct the filename using the standardized format
   filename = f"json_dump/{current_datetime}_{name}_{hash_id}.json"
