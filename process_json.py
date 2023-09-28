@@ -38,6 +38,7 @@ def extract_row(data):
     return [
         id,
         continent,
+        country,
         population,
         new_cases,
         new_deaths,
@@ -74,6 +75,7 @@ def process_json(
         data[12],
         data[13],
         data[14]
+        data[15]
     )
 
 
