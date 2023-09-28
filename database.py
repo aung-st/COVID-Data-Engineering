@@ -1,5 +1,4 @@
 import sqlite3
-from generate_hash import generate_hash
 
 def connect():
         # establish a connection to the SQLite database "data.db"
