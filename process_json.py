@@ -74,7 +74,7 @@ def process_json(
         data[11],
         data[12],
         data[13],
-        data[14]
+        data[14],
         data[15]
     )
 
