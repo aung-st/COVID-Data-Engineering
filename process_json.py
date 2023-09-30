@@ -1,6 +1,7 @@
 from fetch_data import get_data
 from generate_hash import generate_hash
-from database import add
+from database import add, add_tracking_data
+from dump_json import dump_json
 
 def load_json():
 
@@ -79,6 +80,41 @@ def process_json(
     )
 
 
-    
+def extract_tracking_data(raw_json):
+   
+   # get filename
+   filename = dump_json()
+
+   # get hash id of json
+   id = filename[-3:]
+
+   # processed is 1 by default, as sqlite does not have a default boolean datatype
+   # we opt to take 1 as True and 0 as False
+   processed = 1
+
+   # extract datetime of json
+   time_processed = filename[:10]
+
+   # return extracted keys
+   return [
+      id,
+      processed,
+      time_processed
+   ]
+
+def process_tracking_data(
+      raw_json
+):
+   
+   #  extract tracking data from filename of json
+   data = extract_tracking_data(raw_json)
+
+   # insert into json_log table in database
+   add_tracking_data(
+      data[0],
+      data[1],
+      data[2]
+   )
+
 
     
