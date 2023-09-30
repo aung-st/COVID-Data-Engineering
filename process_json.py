@@ -2,11 +2,6 @@ from fetch_data import get_data
 from generate_hash import generate_hash
 from database import add, add_tracking_data
 from dump_json import dump_json
-
-def load_json():
-
-    # load and return json data
-    return get_data()
     
 def create_key(
     country,
