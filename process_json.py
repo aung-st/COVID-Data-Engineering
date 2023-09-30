@@ -36,24 +36,24 @@ def extract_row(data):
     id = create_key(country)
 
     # return extracted keys
-    return [
-        id,
-        continent,
-        country,
-        population,
-        new_cases,
-        new_deaths,
-        active_cases,
-        critical_cases,
-        recovered,
-        recovered_1m_pop,
-        recovered_total,
-        deaths_1m_pop,
-        deaths_total,
-        tests_1m_pop,
-        tests_total,
-        date_time
-    ]
+    return {
+        "id":id,
+        "continent":continent,
+        "country":country,
+        "population":population,
+        "new_cases":new_cases,
+        "new_deaths":new_deaths,
+        "active_cases":active_cases,
+        "critical_cases":critical_cases,
+        "recovered":recovered,
+        "recovered_1m_pop":recovered_1m_pop,
+        "recovered_total":recovered_total,
+        "deaths_1m_pop":deaths_1m_pop,
+        "deaths_total":deaths_total,
+        "tests_1m_pop":tests_1m_pop,
+        "tests_total":tests_total,
+        "date_time":date_time
+    }
 
 def process_json(
   raw_json
@@ -63,22 +63,22 @@ def process_json(
   for dict in raw_json['response']:
     data = extract_row(dict)
     add(
-        data[0],
-        data[1],
-        data[2],
-        data[3],
-        data[4],
-        data[5],
-        data[6],
-        data[7],
-        data[8],
-        data[9],
-        data[10],
-        data[11],
-        data[12],
-        data[13],
-        data[14],
-        data[15],
+        data["id"],
+        data["continent"],
+        data["country"],
+        data["population"],
+        data["new_cases"],
+        data["new_deaths"],
+        data["active_cases"],
+        data["critical_cases"],
+        data["recovered"],
+        data["recovered_1m_pop"],
+        data["recovered_total"],
+        data["deaths_1m_pop"],
+        data["deaths_total"],
+        data["tests_1m_pop"],
+        data["tests_total"],
+        data["date_time"],
         time_extracted
     )
 
@@ -109,7 +109,7 @@ def process_tracking_data(
       raw_json
 ):
    
-   #  extract tracking data from filename of json
+   # extract tracking data from filename of json
    data = extract_tracking_data(raw_json)
 
    # insert into json_log table in database
