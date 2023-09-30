@@ -31,6 +31,19 @@ def create_main_table():
                                 date_time TEXT
                                );""")
         connection.close()
+
+def create_tracking_table():
+        
+        # create the "json_log" table in the database for tracking jsons
+        connection = connect()
+        with connection:
+              connection.execute("""
+                                 CREATE TABLE IF NOT EXISTS json_log(
+                                 id TEXT PRIMARY KEY,
+                                 processed INTEGER,
+                                 time_processed TEXT
+                                );""")
+        connection.close()
  
 def add(
     id,
@@ -75,6 +88,7 @@ def add(
     sqlite_insert = """INSERT INTO covid_data(
                             id,
                             continent,
+                            country,
                             population,
                             new_cases,
                             new_deaths,
@@ -88,7 +102,7 @@ def add(
                             tests_1m_pop,
                             tests_total,
                             date_time)
-                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                            ;"""
     
     # insert data into the "covid_data" table
