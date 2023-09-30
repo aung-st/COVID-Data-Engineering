@@ -4,7 +4,7 @@ import datetime
 import os
 from generate_hash import generate_hash
 
-def dump_json():
+def dump_json(raw_json):
 
   # standardise file names 
   name = "data"  
@@ -28,9 +28,10 @@ def dump_json():
 
   # dump the data to the file, ensuring non-ASCII characters are preserved
   with open(filename, 'w') as f:
-    dump(get_data(), f, ensure_ascii=False)
+    dump(raw_json, f, ensure_ascii=False)
   f.close()
-
-if __name__ == "__main__":
-    dump_json()
-    
+  
+  return [
+    filename,
+    current_datetime,
+  ]

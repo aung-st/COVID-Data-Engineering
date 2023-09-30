@@ -28,7 +28,8 @@ def create_main_table():
                                 deaths_total INTEGER,
                                 tests_1m_pop INTEGER,
                                 tests_total INTEGER,
-                                date_time TEXT
+                                date_time TEXT,
+                                time_extracted TEXT
                                );""")
         connection.close()
 
@@ -92,7 +93,9 @@ def add(
     deaths_total,
     tests_1m_pop,
     tests_total,
-    date_time
+    date_time,
+    time_extracted
+
 ):  
     
     # insertion data
@@ -112,7 +115,8 @@ def add(
             deaths_total,
             tests_1m_pop,
             tests_total,
-            date_time
+            date_time,
+            time_extracted
             )
     
     # query
@@ -132,8 +136,9 @@ def add(
                             deaths_total,
                             tests_1m_pop,
                             tests_total,
-                            date_time)
-                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                            date_time,
+                            time_extracted)
+                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                            ;"""
     
     # insert data into the "covid_data" table
@@ -145,3 +150,6 @@ def add(
               )
     connection.close()
 
+
+
+create_main_table()
