@@ -54,9 +54,13 @@ def process_json(
   raw_json
 ):
   
+  # another column to add into the covid_data table in the database
   time_extracted = dump_json(raw_json)
+
   for dict in raw_json['response']:
     data = extract_row(dict)
+
+    # add all values of a row into the covid_data table
     add(
         data["id"],
         data["continent"],
