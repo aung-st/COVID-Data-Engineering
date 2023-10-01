@@ -8,6 +8,8 @@ def dump_json(raw_json):
 
   # standardise file names 
   name = "data"  
+
+  # time of json dump
   current_datetime = datetime.datetime.now().strftime("%y%m%d%H%M")
   
   
@@ -31,5 +33,4 @@ def dump_json(raw_json):
     dump(raw_json, f, ensure_ascii=False)
   f.close()
   
-  return current_datetime
  
