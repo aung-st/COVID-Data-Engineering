@@ -54,7 +54,7 @@ def process_json(
   raw_json
 ):
   
-  filename,time_extracted = dump_json(raw_json)
+  time_extracted = dump_json(raw_json)
   for dict in raw_json['response']:
     data = extract_row(dict)
     add(
@@ -114,6 +114,5 @@ def process_tracking_data(
       data[2]
    )
 
-process_json(get_data())
 
     
