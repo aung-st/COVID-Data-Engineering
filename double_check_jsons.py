@@ -1,6 +1,7 @@
 import os 
 from database import add,extract_id
 from process_json import process_json
+import json
 def check_json_is_inserted():
 
     # check if a json file has been inserted into the database
@@ -18,20 +19,30 @@ def check_json_is_inserted():
         id = f[-8:-5]
         id_list = make_id_list()
         if id not in id_list:
+
             print(f+" not in database")
             print("now adding "+f+" to database")
-            process_json(f)
+
+            # load json
+            with open(f) as file:
+                raw_json = json.load(file)
+                process_json(raw_json)
+
 
 
 def make_id_list():
+
+    # get all primary keys from the covid_data table
     ids = extract_id()
 
     id_list = []
+
+    # extract the hash id from the primary keys and add to an id list
     for id in ids:
         id_list.append(id[0][:3])
 
+    # return a list of hash ids
     return id_list
 
-check_json_is_inserted()
 
 
