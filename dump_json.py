@@ -31,7 +31,5 @@ def dump_json(raw_json):
     dump(raw_json, f, ensure_ascii=False)
   f.close()
   
-  return [
-    filename,
-    current_datetime,
-  ]
+  return current_datetime
+ 
