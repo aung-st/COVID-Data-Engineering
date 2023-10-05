@@ -92,8 +92,7 @@ def process_json(
         data["date_time"],
         time_extracted
     )
-
-    log_id(id)
+    log_id(id+"-"+data["country"])
 
 
 def extract_tracking_data(raw_json):
