@@ -2,6 +2,8 @@ from fetch_data import get_data
 from generate_hash import generate_hash
 from database import add, add_tracking_data
 from dump_json import dump_json
+import datetime
+import logging
     
 def create_key(
     country,
@@ -50,19 +52,29 @@ def extract_row(data):
         "date_time":date_time
     }
 
+def log_id(id):
+   
+   # keep track of hash id in case of debugging needs
+   logging.basicConfig(format="%(asctime)s - %(message)s",level=logging.INFO)
+   logging.info('id: '+id+' inserted into covid_data table on id column')
+
 def process_json(
-  raw_json
+  raw_json,
+  id # extract hash id of file
 ):
   
   # another column to add into the covid_data table in the database
-  time_extracted = dump_json(raw_json)
+  # this is the time that a json is extracted and placed into a database 
+  time_extracted = datetime.datetime.now().strftime("%y%m%d%H%M")
+
+  id = id  
 
   for dict in raw_json['response']:
     data = extract_row(dict)
 
     # add all values of a row into the covid_data table
     add(
-        data["id"],
+        id+"-"+data["country"],
         data["continent"],
         data["country"],
         data["population"],
@@ -80,6 +92,8 @@ def process_json(
         data["date_time"],
         time_extracted
     )
+
+    log_id(id)
 
 
 def extract_tracking_data(raw_json):
