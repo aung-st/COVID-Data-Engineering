@@ -95,27 +95,6 @@ def bulk_process_json(
         log_id(id+"-"+""+row[2])
 
 
-def extract_tracking_data(raw_json):
-   
-   # get filename
-   filename = dump_json()
-
-   # get hash id of json
-   id = filename[-3:]
-
-   # processed is 1 by default, as sqlite does not have a default boolean datatype
-   # we opt to take 1 as True and 0 as False
-   processed = 1
-
-   # extract datetime of json
-   time_processed = filename[:10]
-
-   # return extracted keys
-   return [
-      id,
-      processed,
-      time_processed
-   ]
 
 
 
