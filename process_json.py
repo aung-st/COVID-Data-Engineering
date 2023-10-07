@@ -117,19 +117,6 @@ def extract_tracking_data(raw_json):
       time_processed
    ]
 
-def process_tracking_data(
-      raw_json
-):
-   
-   # extract tracking data from filename of json
-   data = extract_tracking_data(raw_json)
-
-   # insert into json_log table in database
-   add_tracking_data(
-      data[0],
-      data[1],
-      data[2]
-   )
 
 
     
