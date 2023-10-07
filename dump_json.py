@@ -1,4 +1,3 @@
-from fetch_data import get_data
 from json import dump
 import datetime 
 import os
