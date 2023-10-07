@@ -23,7 +23,7 @@ def dump_json(raw_json):
     print("Potential conflict detected")
 
     # reconstruct the filename with one hash character sliced off 
-    hash_id = generate_hash()[:3]
+    hash_id = generate_hash(3)[:3]
     filename = f"json_dump/{hash_id}_{name}_{current_datetime}.json"
 
 
@@ -32,5 +32,8 @@ def dump_json(raw_json):
   with open(filename, 'w') as f:
     dump(raw_json, f, ensure_ascii=False)
   f.close()
+
+  # to commit: return hash id for use in double check module
+  return hash_id
   
  

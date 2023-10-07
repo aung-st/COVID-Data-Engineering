@@ -150,6 +150,55 @@ def add(
               )
     connection.close()
 
+def bulk_add(data):
+
+        sqlite_insert = """INSERT INTO covid_data(
+                id,
+                continent,
+                country,
+                population,
+                new_cases,
+                new_deaths,
+                active_cases,
+                critical_cases,
+                recovered,
+                recovered_1m_pop,
+                recovered_total,
+                deaths_1m_pop,
+                deaths_total,
+                tests_1m_pop,
+                tests_total,
+                date_time,
+                time_extracted)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                ;"""
+        
+        # insert data into the "covid_data" table
+        connection = connect()
+        with connection:
+                connection.executemany(
+                sqlite_insert,
+                data
+                )
+        connection.close()
+      
 
 
-create_main_table()
+
+def extract_id():
+      
+      #query
+      sqlite_insert = """SELECT id 
+                         FROM
+                         covid_data
+                        ;"""
+      
+      connection = connect()
+      with connection:
+            ids = connection.execute(
+                  sqlite_insert,
+            )
+
+      return ids
+
+

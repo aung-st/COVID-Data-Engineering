@@ -2,6 +2,7 @@ import os
 from database import add,extract_id
 from process_json import process_json
 import json
+
 def check_json_is_inserted():
 
     # check if a json file has been inserted into the database
@@ -26,7 +27,7 @@ def check_json_is_inserted():
             # load json
             with open(f) as file:
                 raw_json = json.load(file)
-                process_json(raw_json)
+                process_json(raw_json,id)
 
 
 
