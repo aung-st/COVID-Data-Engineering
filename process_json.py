@@ -1,7 +1,4 @@
-from fetch_data import get_data
-from generate_hash import generate_hash
-from database import add, add_tracking_data, bulk_add
-from dump_json import dump_json
+from database import bulk_add
 import datetime
 import logging
     
@@ -82,10 +79,6 @@ def bulk_process_json(
   id # extract hash id of file
 ):
   
-  
-
-    id = id  
-
     data = create_list_of_tuples(raw_json,id)
 
     # add all values of a row into the covid_data table
