@@ -32,50 +32,6 @@ def create_main_table():
                                 time_extracted TEXT
                                );""")
         connection.close()
-
-def create_tracking_table():
-        
-        # create the "json_log" table in the database for tracking jsons
-        connection = connect()
-        with connection:
-              connection.execute("""
-                                 CREATE TABLE IF NOT EXISTS json_log(
-                                 id TEXT PRIMARY KEY,
-                                 processed INTEGER,
-                                 time_processed TEXT
-                                );""")
-        connection.close()
-
-def add_tracking_data(
-            id,
-            processed ,
-            time_processed
-):
-      
-      
-      # insertion data
-      data = (
-              id,
-              processed,
-              time_processed
-             )
-
-      # query
-      sqlite_insert = """INSERT INTO json_log(
-                        id,
-                        processed,
-                        time_processed)
-                        VALUES(?,?,?)
-                        ;"""
-      # insert data into the "covid_data" table
-      connection = connect()
-      with connection:
-        connection.execute(
-                sqlite_insert,
-                data
-                )
-      connection.close()
-
  
 def add(
     id,
