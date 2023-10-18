@@ -1,6 +1,6 @@
 import os 
-from database import add,extract_id
-from process_json import process_json
+from database import extract_id
+from process_json import bulk_process_json
 import json
 
 def check_json_is_inserted():
@@ -8,7 +8,7 @@ def check_json_is_inserted():
     # check if a json file has been inserted into the database
     # if it has not then insert into the database
     
-    directory = "json_dump/"
+    directory = "data/json_dump/"
 
     # iterate over files in that directory
     for filename in os.listdir(directory):
@@ -27,7 +27,7 @@ def check_json_is_inserted():
             # load json
             with open(f) as file:
                 raw_json = json.load(file)
-                process_json(raw_json,id)
+                bulk_process_json(raw_json,id)
 
 
 

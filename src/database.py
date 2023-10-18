@@ -3,7 +3,7 @@ import sqlite3
 def connect():
         
         # establish a connection to the SQLite database "data.db"
-        connection = sqlite3.connect("data.db")
+        connection = sqlite3.connect("data/data.db")
         return connection
 
 def create_main_table(): 
