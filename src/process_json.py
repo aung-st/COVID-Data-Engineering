@@ -75,6 +75,7 @@ def log_id(id):
    logging.info('id: '+id+' inserted into covid_data table on id column')
 
 def bulk_process_json(
+  path,
   raw_json,
   id # extract hash id of file
 ):
@@ -82,7 +83,7 @@ def bulk_process_json(
     data = create_list_of_tuples(raw_json,id)
 
     # add all values of a row into the covid_data table
-    bulk_add(data)
+    bulk_add(path,data)
 
     for row in data:
         log_id(id+"-"+""+row[2])

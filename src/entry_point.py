@@ -4,19 +4,17 @@ from process_json import bulk_process_json
 from dump_json import dump_json
 from database import create_main_table
 import time
-from multiprocessing import Process
 
 if __name__ == "__main__":
+    path = "data/data.db"
     raw_json = get_data()
     id = dump_json(raw_json)
-    #process_json(raw_json,id)
-    create_main_table()
+    create_main_table(path)
     t0 = time.time()
     dump_json(get_data())
     
-    process = Process(target=check_json_is_inserted)
-    process.start()
-    process.join()
+    target=check_json_is_inserted(path)
+  
 
     #bulk_process_json(raw_json,id)
     t1 = time.time()

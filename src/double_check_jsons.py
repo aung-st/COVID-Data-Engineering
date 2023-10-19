@@ -3,7 +3,7 @@ from database import extract_id
 from process_json import bulk_process_json
 import json
 
-def check_json_is_inserted():
+def check_json_is_inserted(path):
 
     # check if a json file has been inserted into the database
     # if it has not then insert into the database
@@ -18,7 +18,7 @@ def check_json_is_inserted():
 
         # extract hash id of file
         id = f[-8:-5]
-        id_list = make_id_list()
+        id_list = make_id_list(path)
         if id not in id_list:
 
             print(f+" not in database")
@@ -27,14 +27,14 @@ def check_json_is_inserted():
             # load json
             with open(f) as file:
                 raw_json = json.load(file)
-                bulk_process_json(raw_json,id)
+                bulk_process_json(path,raw_json,id)
 
 
 
-def make_id_list():
+def make_id_list(path):
 
     # get all primary keys from the covid_data table
-    ids = extract_id()
+    ids = extract_id(path)
 
     id_list = []
 
