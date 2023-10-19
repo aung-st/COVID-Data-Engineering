@@ -1,15 +1,15 @@
 import sqlite3
 
-def connect():
+def connect(path):
         
         # establish a connection to the SQLite database "data.db"
-        connection = sqlite3.connect("data/data.db")
+        connection = sqlite3.connect(path)
         return connection
 
-def create_main_table(): 
+def create_main_table(path): 
         
         # create the "covid_data" table in the database
-        connection = connect()
+        connection = connect(path)
         with connection:
             connection.execute("""
                                 CREATE TABLE IF NOT EXISTS covid_data(
@@ -34,6 +34,7 @@ def create_main_table():
         connection.close()
  
 def add(
+    path,    
     id,
     continent,
     country,
@@ -98,7 +99,7 @@ def add(
                            ;"""
     
     # insert data into the "covid_data" table
-    connection = connect()
+    connection = connect(path)
     with connection:
         connection.execute(
               sqlite_insert,
@@ -106,7 +107,7 @@ def add(
               )
     connection.close()
 
-def bulk_add(data):
+def bulk_add(path,data):
 
         sqlite_insert = """INSERT INTO covid_data(
                 id,
@@ -130,7 +131,7 @@ def bulk_add(data):
                 ;"""
         
         # insert data into the "covid_data" table
-        connection = connect()
+        connection = connect(path)
         with connection:
                 connection.executemany(
                 sqlite_insert,
@@ -141,7 +142,7 @@ def bulk_add(data):
 
 
 
-def extract_id():
+def extract_id(path):
       
       #query
       sqlite_insert = """SELECT id 
@@ -149,12 +150,27 @@ def extract_id():
                          covid_data
                         ;"""
       
-      connection = connect()
+      connection = connect(path)
       with connection:
             ids = connection.execute(
                   sqlite_insert,
             )
 
       return ids
+
+def count_rows(path):
+       #query
+      sqlite_insert = """SELECT COUNT(*) 
+                         FROM
+                         covid_data
+                        ;"""
+      
+      connection = connect(path)
+      with connection:
+            number_of_rows = connection.execute(
+                  sqlite_insert,
+            )
+
+      return number_of_rows
 
 
