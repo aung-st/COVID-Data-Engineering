@@ -167,9 +167,11 @@ def count_rows(path):
       
       connection = connect(path)
       with connection:
-            number_of_rows = connection.execute(
+            query = connection.execute(
                   sqlite_insert,
             )
+
+      number_of_rows = query.fetchone()[0]
 
       return number_of_rows
 
