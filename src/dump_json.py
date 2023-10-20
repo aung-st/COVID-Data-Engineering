@@ -1,8 +1,11 @@
 from json import dump
 import datetime 
 import os
-from generate_hash import create_hash
+import sys
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname("src/")))) 
+from src.generate_hash import create_hash
 
+  
 def dump_json(raw_json,path):
 
   # standardise file names 
