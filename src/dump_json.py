@@ -1,7 +1,7 @@
 from json import dump
 import datetime 
 import os
-from generate_hash import generate_hash
+from generate_hash import create_hash
 
 def dump_json(raw_json,path):
 
@@ -12,7 +12,7 @@ def dump_json(raw_json,path):
   current_datetime = datetime.datetime.now().strftime("%y%m%d%H%M")
   
   
-  hash_id = generate_hash(3)[:3]
+  hash_id = create_hash(3)[:3]
   
   # construct the filename using the standardized format
   filename = f"{path}{current_datetime}_{name}_{hash_id}.json"
@@ -22,7 +22,7 @@ def dump_json(raw_json,path):
     print("Potential conflict detected")
 
     # reconstruct the filename with one hash character sliced off 
-    hash_id = generate_hash(3)[:3]
+    hash_id = create_hash(3)[:3]
     filename = f"{path}{hash_id}_{name}_{current_datetime}.json"
 
 

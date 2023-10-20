@@ -1,7 +1,7 @@
 import hashlib
 import os 
 
-def generate_hash(length):
+def create_hash(length):
 
     # generate a hash object for a randomly generated string
     hash_object = hashlib.sha1()

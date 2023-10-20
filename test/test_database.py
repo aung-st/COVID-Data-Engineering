@@ -1,4 +1,4 @@
-from src.database import *
+from src.database import count_rows
 
 def test_all_jsons_inserted():
     path = "test/test.db"

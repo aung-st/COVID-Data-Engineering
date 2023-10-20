@@ -6,18 +6,20 @@ from database import create_main_table
 import time
 
 if __name__ == "__main__":
-    path = "data/data.db"
+    db_path = "data/data.db"
+    json_path = "data/json_dump/"
     raw_json = get_data()
-    id = dump_json(raw_json)
-    create_main_table(path)
+    id = dump_json(raw_json,json_path)
+    print(id)
+    """
+    create_main_table(db_path)
     t0 = time.time()
-    dump_json(get_data())
+    dump_json(get_data(),json_path)
     
-    target=check_json_is_inserted(path)
+    check_json_is_inserted(db_path)
   
 
-    #bulk_process_json(raw_json,id)
     t1 = time.time()
 
-    print(t1-t0)    
+    print(t1-t0)    """
 
