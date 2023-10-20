@@ -32,9 +32,7 @@ def create_filename(path):
     return filename,hash_id
   
 
-def dump_json(raw_json,path):
-
-  filename,_ = create_filename(path)
+def dump_json(raw_json,filename):
 
   # dump the data to the file, ensuring non-ASCII characters are preserved
   with open(filename, 'w') as f:
