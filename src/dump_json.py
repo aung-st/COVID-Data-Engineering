@@ -3,7 +3,7 @@ import datetime
 import os
 from generate_hash import generate_hash
 
-def dump_json(raw_json):
+def dump_json(raw_json,path):
 
   # standardise file names 
   name = "data"  
@@ -15,7 +15,7 @@ def dump_json(raw_json):
   hash_id = generate_hash(3)[:3]
   
   # construct the filename using the standardized format
-  filename = f"data/json_dump/{current_datetime}_{name}_{hash_id}.json"
+  filename = f"{path}{current_datetime}_{name}_{hash_id}.json"
   
   # prevent conflicts in json dumps
   if os.path.exists(filename):
@@ -23,7 +23,7 @@ def dump_json(raw_json):
 
     # reconstruct the filename with one hash character sliced off 
     hash_id = generate_hash(3)[:3]
-    filename = f"data/json_dump/{hash_id}_{name}_{current_datetime}.json"
+    filename = f"{path}{hash_id}_{name}_{current_datetime}.json"
 
 
 
