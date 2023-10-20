@@ -18,8 +18,13 @@ def test_raw_json_is_dumped():
 
     filepath = os.listdir(json_path)
 
+    for f in filepath:
+        if id in f:
+            file = f
+
+
     # check that a file exists with the hash id extracted above
-    assert id in filepath[0]
+    assert id in file
 
     # TODO: delete file after test
 
