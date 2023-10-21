@@ -1,5 +1,4 @@
 import requests
-import pandas as pd
 import os
 
 def get_data():
@@ -18,11 +17,7 @@ def get_data():
   # return response data
   return data
 
-def get_dataframe():
 
-  # convert and return the response data into a pandas DataFrame
-  data = pd.DataFrame.from_dict(get_data())
-  return data
 
 
 
