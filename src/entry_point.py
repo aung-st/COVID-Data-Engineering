@@ -3,24 +3,31 @@ from fetch_data import get_data
 from process_json import bulk_process_json
 from dump_json import dump_json,create_filename
 from database import create_main_table
-import time
 
 if __name__ == "__main__":
+
+    # pathing arguements 
     db_path = "data/data.db"
     json_path = "data/json_dump/"
-    raw_json = get_data()
-    #id = dump_json(raw_json,json_path)
-    #print(id)
     
+    # get json response from API
+    raw_json = get_data()
+   
+    # create covid data table for database if it doesn't exist already
     create_main_table(db_path)
-    t0 = time.time()
-    filename,_ = create_filename(json_path)
+
+    # create a filename for the json file and get id for processing
+    filename,id = create_filename(json_path)
+
+    # save json file into data/json_dump/
     dump_json(get_data(),filename)
     
+    # insert json entries into database
+    bulk_process_json(db_path,raw_json,id)
+
+    # make sure that there are no unadded json files in the json_dump directory
     check_json_is_inserted(db_path)
   
 
-    t1 = time.time()
 
-    print(t1-t0)    
 
