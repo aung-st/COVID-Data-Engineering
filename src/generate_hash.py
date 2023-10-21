@@ -7,7 +7,7 @@ def create_hash(length:int) -> str:
     Create a hash id by encoding a string of random bytes of size length.
 
     Parameters:
-    length (int): size of random bytes
+    length (int): Size of random bytes
 
     Returns:
     A hash id of length 40
