@@ -1,13 +1,27 @@
 import sqlite3
 
-def connect(path):
+def connect(path:str) -> None:
         
-        # establish a connection to the SQLite database "data.db"
+        """
+        Establish a connection to the database in the specified path
+
+        Parameters:
+        path (str): A path into a database in the data/database/ directory
+        """
+
         connection = sqlite3.connect(path)
+
         return connection
 
-def create_main_table(path): 
+def create_main_table(path) -> None: 
         
+        """
+        Creates a covid_data table with the schema defined the execution sequence for the specified database path in the argument
+
+        Parameters:
+        path (str): A path into a database in the data/database/ directory
+        """
+
         # create the "covid_data" table in the database
         connection = connect(path)
         with connection:
@@ -107,8 +121,20 @@ def add(
               )
     connection.close()
 
-def bulk_add(path,data):
+def bulk_add(
+    path,
+    data
+) -> None:
 
+        """
+        Adds 238 entries from a raw json file into the covid_data table of a database in the data/database/ path
+
+        Parameters:
+        path (str): A path into a database in the data/database/ directory
+        data (dict): A raw json file that is fetched from the API call in fetch_data.py
+        """
+
+        # sqlite query to be inserted into the execution sequence
         sqlite_insert = """INSERT INTO covid_data(
                 id,
                 continent,
@@ -142,37 +168,54 @@ def bulk_add(path,data):
 
 
 
-def extract_id(path):
+def extract_id(path: str) -> None:
       
-      #query
-      sqlite_insert = """SELECT id 
-                         FROM
-                         covid_data
-                        ;"""
+	"""
+    Read all primary key rows from the database specified in the path leading to the data/database directory and extract the hash id.
+    
+    Paramaters:
+    path (str): A path into a database in the data/database/ directory
+    """
       
-      connection = connect(path)
-      with connection:
-            ids = connection.execute(
-                  sqlite_insert,
-            )
+	# sqlite query to be inserted into the execution sequence
+	sqlite_insert = """SELECT id 
+						FROM
+						covid_data
+					;"""
+	
+	connection = connect(path)
+	with connection:
+		ids = connection.execute(
+				sqlite_insert,
+		)
 
-      return ids
+	return ids
 
-def count_rows(path):
-       #query
-      sqlite_insert = """SELECT COUNT(*) 
-                         FROM
-                         covid_data
-                        ;"""
-      
-      connection = connect(path)
-      with connection:
-            query = connection.execute(
-                  sqlite_insert,
-            )
+def count_rows(path) -> None:
+	
+	"""
+    Count the number of rows that the database specified in the path leading to the data/database directory has.
+    
+    Parameters:
+    path (str): A path into a database in the data/database/ directory
+    """
+       
+	# sqlite query to be inserted into the execution sequence
+	sqlite_insert = """SELECT COUNT(*) 
+						FROM
+						covid_data
+					;"""
+	
+	connection = connect(path)
+	with connection:
+		query = connection.execute(
+				sqlite_insert,
+		)
 
-      number_of_rows = query.fetchone()[0]
+	# fetching the 0th index of this tuple gets you the number of rows
+	# the other value in the tuple is not useful in this context
+	number_of_rows = query.fetchone()[0]
 
-      return number_of_rows
+	return number_of_rows
 
 
