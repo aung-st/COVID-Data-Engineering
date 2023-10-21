@@ -1,4 +1,4 @@
-# COVID19-Data-Dashboard
+# COVID-Data-Engineering
 
 ## This project is a data engineering pipeline that fetches and stores data from a public COVID data API. The pipeline is written in Python and automates the process of fetching and processing COVID data.
 
