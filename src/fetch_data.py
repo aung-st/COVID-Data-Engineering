@@ -4,7 +4,7 @@ import os
 def get_data() -> dict:
     
 	"""
-	Make an API call to fetch json response data for statistics endpoint
+	Make an API call to fetch json response data for statistics endpoint.
 
 	Returns:
 	data (dict): json response data
@@ -25,12 +25,12 @@ def get_data() -> dict:
 	return data
 
 def get_history(
-	country: str,
-	day: str
+	country:str,
+	day:str
 ) -> dict:
 
 	"""
-	Make an API call to fetch json response data for history endpoint
+	Make an API call to fetch json response data for history endpoint.
 
 	Parameters:
 	country (str): A country name as defined in the list of countries in the statistic endpoint
