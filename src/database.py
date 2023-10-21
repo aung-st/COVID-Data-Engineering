@@ -61,7 +61,8 @@ def bulk_add(
         """
 
         # sqlite query to be inserted into the execution sequence
-        sqlite_insert = """INSERT INTO covid_data(
+        sqlite_insert = """
+                INSERT INTO covid_data(
                 id,
                 continent,
                 country,
@@ -101,9 +102,10 @@ def extract_id(path: str) -> None:
     """
       
 	# sqlite query to be inserted into the execution sequence
-	sqlite_insert = """SELECT id 
-						FROM
-						covid_data
+	sqlite_insert = """
+        			SELECT id 
+					FROM
+					covid_data
 					;"""
 	
 	connection = connect(path)
@@ -124,9 +126,10 @@ def count_rows(path) -> None:
     """
        
 	# sqlite query to be inserted into the execution sequence
-	sqlite_insert = """SELECT COUNT(*) 
-						FROM
-						covid_data
+	sqlite_insert = """
+    				SELECT COUNT(*) 
+					FROM
+					covid_data
 					;"""
 	
 	connection = connect(path)
