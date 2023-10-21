@@ -46,80 +46,6 @@ def create_main_table(path) -> None:
                                 time_extracted TEXT
                                );""")
         connection.close()
- 
-def add(
-    path,    
-    id,
-    continent,
-    country,
-    population,
-    new_cases,
-    new_deaths,
-    active_cases,
-    critical_cases,
-    recovered,
-    recovered_1m_pop,
-    recovered_total,
-    deaths_1m_pop,
-    deaths_total,
-    tests_1m_pop,
-    tests_total,
-    date_time,
-    time_extracted
-
-):  
-    
-    # insertion data
-    data = (
-            id,
-            continent,
-            country,
-            population,
-            new_cases,
-            new_deaths,
-            active_cases,
-            critical_cases,
-            recovered,
-            recovered_1m_pop,
-            recovered_total,
-            deaths_1m_pop,
-            deaths_total,
-            tests_1m_pop,
-            tests_total,
-            date_time,
-            time_extracted
-            )
-    
-    # query
-    sqlite_insert = """INSERT INTO covid_data(
-                            id,
-                            continent,
-                            country,
-                            population,
-                            new_cases,
-                            new_deaths,
-                            active_cases,
-                            critical_cases,
-                            recovered,
-                            recovered_1m_pop,
-                            recovered_total,
-                            deaths_1m_pop,
-                            deaths_total,
-                            tests_1m_pop,
-                            tests_total,
-                            date_time,
-                            time_extracted)
-                           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                           ;"""
-    
-    # insert data into the "covid_data" table
-    connection = connect(path)
-    with connection:
-        connection.execute(
-              sqlite_insert,
-              data
-              )
-    connection.close()
 
 def bulk_add(
     path,
@@ -165,9 +91,6 @@ def bulk_add(
                 )
         connection.close()
       
-
-
-
 def extract_id(path: str) -> None:
       
 	"""
