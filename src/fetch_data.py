@@ -24,7 +24,10 @@ def get_data() -> dict:
 	# return response data
 	return data
 
-def get_history(country: str,day: str) -> dict:
+def get_history(
+	country: str,
+	day: str
+) -> dict:
 
 	"""
 	Make an API call to fetch json response data for history endpoint
