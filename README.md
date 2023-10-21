@@ -1,13 +1,14 @@
 # COVID19-Data-Dashboard
 
-## This project is a data engineering and analysis pipeline that fetches data from a public COVID data API, performs data cleaning and transformation, runs data analysis, and then visualizes the results on a  dashboard. The pipeline is written in Python and can be used to automate the process of fetching, processing, and analyzing COVID data.
+## This project is a data engineering pipeline that fetches and stores data from a public COVID data API. The pipeline is written in Python and automates the process of fetching and processing COVID data.
 
 # Features
 
 ## - Fetches COVID data from a public API
-## - Cleans and transforms the raw data
+## - Saves raw json files from API call into a json dump folder
+## - Inserts all data in a json file into a database
   
 # Requirements
-## requests==2.28.0
+## requests==2.31.0
 ## sqlite3==3.32.3
-## pandas==1.2.0
+## pandas==2.1.1
