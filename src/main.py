@@ -7,7 +7,7 @@ from database import create_main_table
 if __name__ == "__main__":
 
     # pathing arguements 
-    db_path = "data/data.db"
+    db_path = "data/database/data.db"
     json_path = "data/json_dump/"
     
     # get json response from API
