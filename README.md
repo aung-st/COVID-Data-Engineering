@@ -20,3 +20,4 @@
 ## requests==2.31.0
 ## sqlite3==3.32.3
 ## pandas==2.1.1
+## pytest==7.4.2
