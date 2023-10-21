@@ -21,6 +21,7 @@ def test_raw_json_is_dumped():
     for f in filepath:
         if id in f:
             file = f
+            break
 
 
     # check that a file exists with the hash id extracted above
