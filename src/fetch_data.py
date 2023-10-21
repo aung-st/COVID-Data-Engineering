@@ -6,7 +6,7 @@ def get_data() -> dict:
 	"""
 	Make an API call to fetch json response data for statistics endpoint
 
-	returns:
+	Returns:
 	data (dict): json response data
 	"""
 
@@ -32,11 +32,11 @@ def get_history(
 	"""
 	Make an API call to fetch json response data for history endpoint
 
-	params:
+	Parameters:
 	country (str): A country name as defined in the list of countries in the statistic endpoint
 	day (str): A date in the form "yyyy-mm-dd"
 
-	returns:
+	Returns:
 	data (dict): json response data
 	"""
 
