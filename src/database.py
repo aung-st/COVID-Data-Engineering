@@ -3,7 +3,7 @@ import sqlite3
 def connect(path:str) -> None:
         
         """
-        Establish a connection to the database in the specified path
+        Establish a connection to the database in the specified path.
 
         Parameters:
         path (str): A path into a database in the data/database/ directory
@@ -13,10 +13,10 @@ def connect(path:str) -> None:
 
         return connection
 
-def create_main_table(path) -> None: 
+def create_main_table(path:str) -> None: 
         
         """
-        Creates a covid_data table with the schema defined the execution sequence for the specified database path in the argument
+        Creates a covid_data table with the schema defined the execution sequence for the specified database path in the argument.
 
         Parameters:
         path (str): A path into a database in the data/database/ directory
@@ -48,12 +48,12 @@ def create_main_table(path) -> None:
         connection.close()
 
 def bulk_add(
-    path,
-    data
+    path:str,
+    data:dict
 ) -> None:
 
         """
-        Adds 238 entries from a raw json file into the covid_data table of a database in the data/database/ path
+        Adds 238 entries from a raw json file into the covid_data table of a database in the data/database/ path.
 
         Parameters:
         path (str): A path into a database in the data/database/ directory
@@ -116,22 +116,22 @@ def extract_id(path: str) -> None:
 
 	return ids
 
-def count_rows(path) -> None:
+def count_rows(path:str) -> None:
 	
 	"""
-    Count the number of rows that the database specified in the path leading to the data/database directory has.
-    
-    Parameters:
-    path (str): A path into a database in the data/database/ directory
-    """
-       
+	Count the number of rows that the database specified in the path leading to the data/database directory has.
+
+	Parameters:
+	path (str): A path into a database in the data/database/ directory
+	"""
+		
 	# sqlite query to be inserted into the execution sequence
 	sqlite_insert = """
-    				SELECT COUNT(*) 
+					SELECT COUNT(*) 
 					FROM
 					covid_data
 					;"""
-	
+
 	connection = connect(path)
 	with connection:
 		query = connection.execute(
