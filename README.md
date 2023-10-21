@@ -2,8 +2,10 @@
 
 ## This project is a data engineering pipeline that fetches and stores data from a public COVID data API. The pipeline is written in Python and automates the process of fetching and processing COVID data.
 
-# Features
+# API
+## This project used the public API: https://rapidapi.com/api-sports/api/covid-193/
 
+# Features
 ## - Fetches COVID data from a public API
 ## - Saves raw json files from API call into a json dump folder
 ## - Inserts all data in a json file into a database
