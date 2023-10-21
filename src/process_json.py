@@ -68,11 +68,11 @@ def create_list_of_tuples(raw_json,id):
     return list_of_tuples
 
 
-def log_id(id):
+def log_id(id,index):
    
    # keep track of hash id in case of debugging needs
    logging.basicConfig(format="%(asctime)s - %(message)s",level=logging.INFO)
-   logging.info('id: '+id+' inserted into covid_data table on id column')
+   logging.info(f'id: {id} inserted into covid_data table on id column |{index}')
 
 def bulk_process_json(
   path,
@@ -85,8 +85,10 @@ def bulk_process_json(
     # add all values of a row into the covid_data table
     bulk_add(path,data)
 
+    index = 1
     for row in data:
-        log_id(id+"-"+""+row[2])
+        log_id(id+"-"+""+row[2],index)
+        index+=1
 
 
 
