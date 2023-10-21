@@ -3,7 +3,15 @@ from database import extract_id
 from process_json import bulk_process_json
 import json
 
-def check_json_is_inserted(path):
+def check_json_is_inserted(path:str) -> None:
+
+    """
+    When run, this will scan all files in the json_dump directory to check if there are any json files not already added to the database. 
+    Unadded entries will then be added to the database. 
+
+    Parameters:
+    path (str): json_path
+    """
 
     # check if a json file has been inserted into the database
     # if it has not then insert into the database
@@ -31,7 +39,17 @@ def check_json_is_inserted(path):
 
 
 
-def make_id_list(path):
+def make_id_list(path:str) -> list:
+
+    """
+    Fetches all database primary keys and extracts the 3-character hash id into a list. 
+
+    Parameters:
+    path (str): Database path in data/database
+
+    Returns:
+    id_list: A list of all 3-character hash ids in the database for use in double_check_jsons
+    """
 
     # get all primary keys from the covid_data table
     ids = extract_id(path)
