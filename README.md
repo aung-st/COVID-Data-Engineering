@@ -5,6 +5,9 @@
 # API
 ## This project used the public API: https://rapidapi.com/api-sports/api/covid-193/
 
+# API key
+## The API key was stored as an environment variable using the win10 terminal with: setx RAPID_API_KEY "key_name"
+
 # Features
 ## - Fetches COVID data from a public API
 ## - Saves raw json files from API call into a json dump folder
