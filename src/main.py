@@ -8,7 +8,6 @@ from os.path import exists
 from os import mkdir
 from dotenv import load_dotenv
 
-
 if __name__ == "__main__":
     
     # load .env file in the root 
@@ -35,10 +34,10 @@ if __name__ == "__main__":
     create_main_table(db_path)
 
     # create a filename for the json file and get id for processing
-    filename,id = create_filename(json_path)
+    filename,id = create_filename()
 
     # save json file into data/json_dump/
-    dump_json(get_data(),filename)
+    dump_json(raw_json,filename,json_path)
     
     # insert json entries into database
     bulk_process_json(db_path,raw_json,id)
