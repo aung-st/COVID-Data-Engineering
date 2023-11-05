@@ -116,8 +116,6 @@ def create_list_of_tuples(
         
         list_of_tuples.append(extract_row_tuple(dict,id))
 
-
-
     return list_of_tuples
 
 def log_id(
