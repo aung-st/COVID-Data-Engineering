@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname("src/")))) 
 from src.generate_hash import create_hash
 
-def create_filename(path:str) -> tuple:
+def create_filename() -> tuple:
     
     """
    	Construct a filename in the format YYMMDDHHmm_data_xxx where YY is year, MM is months DD is day, HH is hour, mm is minute and xxx is a 3 character unique hash id.
@@ -28,7 +28,7 @@ def create_filename(path:str) -> tuple:
     hash_id = create_hash(3)[:3]
     
     # construct the filename using the standardized format
-    filename = f"{path}{current_datetime}_{name}_{hash_id}.json"
+    filename = f"{current_datetime}_{name}_{hash_id}.json"
     
     # prevent conflicts in json dumps
     if os.path.exists(filename):
@@ -36,7 +36,7 @@ def create_filename(path:str) -> tuple:
 
       # reconstruct the filename with a different set of 3 hash characters
       hash_id = create_hash(3)[:3]
-      filename = f"{path}{hash_id}_{name}_{current_datetime}.json"
+      filename = f"{hash_id}_{name}_{current_datetime}.json"
     
     # return filename to be used in dump json
     # return hash id for use in double check module
@@ -44,17 +44,21 @@ def create_filename(path:str) -> tuple:
   
 def dump_json(
 	raw_json:dict,
-	filename:str
+	filename:str,
+  path:str
 ) -> None:
       
-	"""
-    Save a raw json file as the specified filename in the function arguement. It will save into a directory which is already attached in the filename arguement.
-    
-    Parameters:
-    raw_json (dict): A raw json file fetched from the API call in fetch_data.py
-    filename (str): A filename with a path attached generated from the create_filename function
-    """
-	# dump the data to the file, ensuring non-ASCII characters are preserved
-	with open(filename, 'w') as f:
-		dump(raw_json, f, ensure_ascii=False)
-	f.close()
+  """
+  Save a raw json file as the specified filename in the function arguement. It will save into a directory which is already attached in the filename arguement.
+
+  Parameters:
+  raw_json (dict): A raw json file fetched from the API call in fetch_data.py
+  filename (str): A filename with a path attached generated from the create_filename function
+  path (str): Path to the target directory
+  """
+  print(os.path.join(path, filename))
+  # dump the data to the file, ensuring non-ASCII characters are preserved
+  with open(os.path.join(path, filename), 'w') as f:
+    dump(raw_json, f, ensure_ascii=False)
+    print("Success")
+  f.close()
