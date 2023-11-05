@@ -58,11 +58,3 @@ def get_history(
 
 	# return response data
 	return data
-
-
-
-
-
-
-
-
