@@ -15,37 +15,37 @@ def connect(path:str) -> None:
 
 def create_main_table(path:str) -> None: 
         
-        """
-        Creates a covid_data table with the schema defined the execution sequence for the specified database path in the argument.
+	"""
+	Creates a covid_data table with the schema defined the execution sequence for the specified database path in the argument.
 
-        Parameters:
-        path (str): A path into a database in the data/database/ directory
-        """
+	Parameters:
+	path (str): A path into a database in the data/database/ directory
+	"""
 
-        # create the "covid_data" table in the database
-        connection = connect(path)
-        with connection:
-            connection.execute("""
-                                CREATE TABLE IF NOT EXISTS covid_data(
-                                id TEXT PRIMARY KEY,
-                                continent TEXT,
-                                country TEXT,
-                                population INTEGER,
-                                new_cases INTEGER,
-                                new_deaths INTEGER,
-                                active_cases INTEGER,
-                                critical_cases INTEGER,
-                                recovered INTEGER,
-                                recovered_1m_pop INTEGER,
-                                recovered_total INTEGER,
-                                deaths_1m_pop INTEGER,
-                                deaths_total INTEGER,
-                                tests_1m_pop INTEGER,
-                                tests_total INTEGER,
-                                date_time TEXT,
-                                time_extracted TEXT
-                               );""")
-        connection.close()
+	# create the "covid_data" table in the database
+	connection = connect(path)
+	with connection:
+		connection.execute("""
+			CREATE TABLE IF NOT EXISTS covid_data(
+			id TEXT PRIMARY KEY,
+			continent TEXT,
+			country TEXT,
+			population INTEGER,
+			new_cases INTEGER,
+			new_deaths INTEGER,
+			active_cases INTEGER,
+			critical_cases INTEGER,
+			recovered INTEGER,
+			recovered_1m_pop INTEGER,
+			recovered_total INTEGER,
+			deaths_1m_pop INTEGER,
+			deaths_total INTEGER,
+			tests_1m_pop INTEGER,
+			tests_total INTEGER,
+			date_time TEXT,
+			time_extracted TEXT
+			);""")
+	connection.close()
 
 def bulk_add(
     path:str,
