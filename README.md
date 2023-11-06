@@ -9,15 +9,17 @@
 ## This project used the public API: https://rapidapi.com/api-sports/api/covid-193/
 
 # API key
-## The API key was stored as an environment variable using the win10 terminal with: setx RAPID_API_KEY "key_name"
+## The API key was stored as a .env file as: RAPID_API_KEY = key_name
 
 # Features
 ## - Fetches COVID data from a public API
 ## - Saves raw json files from API call into a json dump folder
 ## - Inserts all data in a json file into a database
-  
+
+# Testing
+## The test.db file was cloned on a terminal with sqlite3 commands in the database folder
+
 # Requirements
 ## requests==2.31.0
-## sqlite3==3.32.3
-## pandas==2.1.1
+## python-dotenv==1.0.0
 ## pytest==7.4.2
