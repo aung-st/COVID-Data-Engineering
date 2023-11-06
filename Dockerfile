@@ -1,9 +1,13 @@
 # Get base image python
-FROM python:3.8.10 
+FROM ubuntu
+
+RUN apt update
+RUN apt install python3 -y
+RUN apt install python3-pip -y
+
 WORKDIR /app
 COPY . /app
-COPY requirements.txt ./requirements.txt
 
 RUN pip install -r requirements.txt
 
-CMD ["python","./src/main.py"]
+CMD ["bash"]
