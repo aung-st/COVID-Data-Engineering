@@ -2,8 +2,8 @@
 FROM ubuntu
 
 RUN apt update
-RUN apt install python3 -y
-RUN apt install python3-pip -y
+RUN apt install python3 -y python3-pip -y 
+RUN apt install sqlite3
 
 WORKDIR /app
 COPY . /app
