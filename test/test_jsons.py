@@ -12,9 +12,9 @@ def test_raw_json_is_dumped():
     raw_json = get_data()
 
     # dump json file
-    filename,id = create_filename(json_path)
+    filename,id = create_filename()
 
-    dump_json(raw_json,filename)
+    dump_json(raw_json,filename,json_path)
 
     filepath = os.listdir(json_path)
 
