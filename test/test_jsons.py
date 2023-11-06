@@ -1,5 +1,4 @@
 from src.fetch_data import get_data 
-import sys
 import os
 from src.dump_json import dump_json,create_filename
 
